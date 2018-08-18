@@ -11,11 +11,18 @@ class EmployeeTable extends Component {
       sortByName,
       sortByBirthday,
       employees,
+      onSortByName,
+      onSortByBirthday,
     } = this.props;
-    const filteredEmployees = employees.filter(
-      ({ role, isArchive }) =>
-        role === filterRole && isArchive === filterArchived
-    );
+
+    const filteredEmployees =
+      filterRole === 'all'
+        ? employees.filter(({ isArchive }) => isArchive === filterArchived)
+        : employees.filter(
+            ({ role, isArchive }) =>
+              role === filterRole && isArchive === filterArchived
+          );
+
     const sortedEmployees =
       (sortByName && sortBy(filteredEmployees, 'name')) ||
       (sortByBirthday &&
@@ -27,15 +34,19 @@ class EmployeeTable extends Component {
               .join('/')
           );
         }));
+
     const reversedEmployees =
       sortByName === 'desc' || sortByBirthday === 'desc'
         ? sortedEmployees.reverse()
         : sortedEmployees;
+
     return (
       <table className="table">
         <EmployeeTableHeader
           sortByName={sortByName}
           sortByBirthday={sortByBirthday}
+          onSortByName={onSortByName}
+          onSortByBirthday={onSortByBirthday}
         />
         <EmployeeTableBody employees={reversedEmployees} />
       </table>

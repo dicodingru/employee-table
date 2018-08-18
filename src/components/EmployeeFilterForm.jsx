@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
 class EmployeeFilterForm extends Component {
+  onSelectRole = (e) => {
+    this.props.onChangeRole(e.target.value);
+  };
   render() {
-    const { filterRole, filterArchived } = this.props;
+    const { filterRole, filterArchived, onChangeStatus } = this.props;
     return (
       <div className="mb-3">
         <form className="d-flex justify-content-between" action="">
           <div className="">
-            <select className="custom-select" value={filterRole}>
+            <select
+              className="custom-select"
+              value={filterRole}
+              onChange={this.onSelectRole}>
               <option value="all">Выберите должность</option>
               <option value="driver">Водитель</option>
               <option value="waiter">Официант</option>
@@ -26,6 +32,7 @@ class EmployeeFilterForm extends Component {
               type="checkbox"
               checked={filterArchived}
               id="status"
+              onChange={onChangeStatus}
             />
           </div>
         </form>
