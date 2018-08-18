@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 
 class EmployeeFilterForm extends Component {
   render() {
+    const { filterRole, filterArchived } = this.props;
     return (
       <div className="mb-3">
         <form className="d-flex justify-content-between" action="">
           <div className="">
-            <select className="custom-select">
-              <option selected>Выберите должность</option>
-              <option value="1">Водитель</option>
-              <option value="2">Официант</option>
-              <option value="3">Повар</option>
+            <select className="custom-select" value={filterRole}>
+              <option value="all">Выберите должность</option>
+              <option value="driver">Водитель</option>
+              <option value="waiter">Официант</option>
+              <option value="cook">Повар</option>
             </select>
           </div>
 
@@ -23,7 +24,7 @@ class EmployeeFilterForm extends Component {
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
+              checked={filterArchived}
               id="status"
             />
           </div>
