@@ -2,215 +2,395 @@
 
 exports[`App should match snapshot 1`] = `
 <div
-  className="p-3"
+  className="container-fluid py-3"
 >
   <div
-    className="mb-3"
+    className="row"
   >
-    <form
-      action=""
-      className="d-flex justify-content-between"
+    <div
+      className="col"
     >
-      <div>
-        <select
-          className="custom-select"
-          onChange={[Function]}
-          value="all"
+      <div
+        className="row"
+      >
+        <div
+          className="col mb-3"
         >
-          <option
-            value="all"
+          <button
+            className="btn btn-primary d-block mx-auto ml-sm-auto mr-sm-0"
+            data-target="#addModal"
+            data-toggle="modal"
+            type="button"
           >
-            Выберите должность
-          </option>
-          <option
-            value="driver"
-          >
-            Водитель
-          </option>
-          <option
-            value="waiter"
-          >
-            Официант
-          </option>
-          <option
-            value="cook"
-          >
-            Повар
-          </option>
-        </select>
+            Добавить
+          </button>
+        </div>
       </div>
       <div
-        className="form-check form-check-inline"
+        className="row"
       >
-        <label
-          className="form-check-label"
-          htmlFor="status"
+        <div
+          className="col-12 col-sm-3 col-md-2 mb-3"
         >
-          В архиве  
-        </label>
-        <input
-          checked={false}
-          className="form-check-input"
-          id="status"
-          onChange={[Function]}
-          type="checkbox"
-        />
+          <form
+            className="form-inline d-md-block form-row"
+          >
+            <div
+              className="col-6 col-sm mb-sm-3 text-sm-right"
+            >
+              <label
+                className="sr-only"
+                htmlFor="role"
+              >
+                Фильтровать по должности:
+                 
+              </label>
+              <select
+                className="form-control mw-100"
+                id="role"
+                onChange={[Function]}
+                value="all"
+              >
+                <option
+                  value="all"
+                >
+                  Должность
+                </option>
+                <option
+                  value="driver"
+                >
+                  Водитель
+                </option>
+                <option
+                  value="waiter"
+                >
+                  Официант
+                </option>
+                <option
+                  value="cook"
+                >
+                  Повар
+                </option>
+              </select>
+            </div>
+            <div
+              className="col-6 col-sm"
+            >
+              <div
+                className="form-check d-block text-right"
+              >
+                <label
+                  className="d-inline-block"
+                  htmlFor="status"
+                >
+                  <input
+                    checked={false}
+                    className="form-check-input"
+                    id="status"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                    В архиве
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          className="col-12 col-sm-9 col-md-10"
+        >
+          <table
+            className="table table-striped"
+          >
+            <thead
+              className=""
+            >
+              <tr>
+                <th
+                  className="bg-dark text-light"
+                  onClick={[Function]}
+                  scope="col"
+                >
+                  ФИО
+                  <i
+                    aria-hidden="true"
+                    className="fa float-right fa-sort-asc"
+                  />
+                </th>
+                <th
+                  scope="col"
+                >
+                  Должность
+                </th>
+                <th
+                  scope="col"
+                >
+                  Телефон
+                </th>
+                <th
+                  className=""
+                  onClick={[Function]}
+                  scope="col"
+                >
+                  Дата рождения
+                  <i
+                    aria-hidden="true"
+                    className="fa float-right fa-sort"
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Александр Третьяков
+                </th>
+                <td>
+                  Водитель
+                </td>
+                <td>
+                  +7 (872) 568-2916
+                </td>
+                <td>
+                  31.05.1979
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Алла Котова
+                </th>
+                <td>
+                  Повар
+                </td>
+                <td>
+                  +7 (948) 523-2964
+                </td>
+                <td>
+                  26.01.1982
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Богдан Давыдов
+                </th>
+                <td>
+                  Водитель
+                </td>
+                <td>
+                  +7 (971) 575-2645
+                </td>
+                <td>
+                  29.11.1990
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Валерий Пестов
+                </th>
+                <td>
+                  Повар
+                </td>
+                <td>
+                  +7 (899) 403-2387
+                </td>
+                <td>
+                  20.01.1987
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Евдокия Филиппова
+                </th>
+                <td>
+                  Официант
+                </td>
+                <td>
+                  +7 (877) 450-3253
+                </td>
+                <td>
+                  03.12.1994
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Илья Емельянов
+                </th>
+                <td>
+                  Водитель
+                </td>
+                <td>
+                  +7 (883) 508-3269
+                </td>
+                <td>
+                  12.02.1982
+                </td>
+              </tr>
+              <tr>
+                <th
+                  scope="row"
+                >
+                  Пелагея Морозова
+                </th>
+                <td>
+                  Водитель
+                </td>
+                <td>
+                  +7 (977) 521-3479
+                </td>
+                <td>
+                  11.09.1981
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </form>
+    </div>
+    <div
+      className="modal"
+      id="addModal"
+    >
+      <div
+        className="modal-dialog"
+      >
+        <div
+          className="modal-content"
+        >
+          <div
+            className="modal-body"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="name"
+                >
+                  ФИО
+                </label>
+                <input
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="phone"
+                >
+                  Телефон
+                </label>
+                <input
+                  className="form-control"
+                  id="phone"
+                  name="phone"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  type="text"
+                  value=""
+                />
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="role"
+                >
+                  Должность
+                </label>
+                <select
+                  className="form-control"
+                  id="role"
+                  name="role"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  value=""
+                >
+                  <option
+                    value=""
+                  >
+                    Должность
+                  </option>
+                  <option
+                    value="driver"
+                  >
+                    Водитель
+                  </option>
+                  <option
+                    value="waiter"
+                  >
+                    Официант
+                  </option>
+                  <option
+                    value="cook"
+                  >
+                    Повар
+                  </option>
+                </select>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor=""
+                >
+                  Дата рождения
+                </label>
+                <input
+                  className="form-control"
+                  id="birthday"
+                  name="birthday"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  type="date"
+                  value=""
+                />
+              </div>
+              <div>
+                <button
+                  className="btn btn-primary d-block mx-auto"
+                  type="submit"
+                >
+                  Добавить
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <table
-    className="table"
-  >
-    <thead>
-      <tr>
-        <th
-          className="table-active"
-          onClick={[Function]}
-          scope="col"
-        >
-          Name
-          <i
-            aria-hidden="true"
-            className="fa float-right fa-sort-asc"
-          />
-        </th>
-        <th
-          scope="col"
-        >
-          Role
-        </th>
-        <th
-          scope="col"
-        >
-          Phone
-        </th>
-        <th
-          className=""
-          onClick={[Function]}
-          scope="col"
-        >
-          Birth date
-          <i
-            aria-hidden="true"
-            className="fa float-right fa-sort"
-          />
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th
-          scope="row"
-        >
-          Александр Третьяков
-        </th>
-        <td>
-          driver
-        </td>
-        <td>
-          +7 (872) 568-2916
-        </td>
-        <td>
-          31.05.1979
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Алла Котова
-        </th>
-        <td>
-          cook
-        </td>
-        <td>
-          +7 (948) 523-2964
-        </td>
-        <td>
-          26.01.1982
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Богдан Давыдов
-        </th>
-        <td>
-          driver
-        </td>
-        <td>
-          +7 (971) 575-2645
-        </td>
-        <td>
-          29.11.1990
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Валерий Пестов
-        </th>
-        <td>
-          cook
-        </td>
-        <td>
-          +7 (899) 403-2387
-        </td>
-        <td>
-          20.01.1987
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Евдокия Филиппова
-        </th>
-        <td>
-          waiter
-        </td>
-        <td>
-          +7 (877) 450-3253
-        </td>
-        <td>
-          03.12.1994
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Илья Емельянов
-        </th>
-        <td>
-          driver
-        </td>
-        <td>
-          +7 (883) 508-3269
-        </td>
-        <td>
-          12.02.1982
-        </td>
-      </tr>
-      <tr>
-        <th
-          scope="row"
-        >
-          Пелагея Морозова
-        </th>
-        <td>
-          driver
-        </td>
-        <td>
-          +7 (977) 521-3479
-        </td>
-        <td>
-          11.09.1981
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 `;

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
+import { reducer as formReducer } from 'redux-form';
 import * as actions from '../actions';
 
-const filterRole = handleActions(
+const roleFilter = handleActions(
   {
     [actions.changeRoleFilter](
       state,
@@ -16,9 +17,9 @@ const filterRole = handleActions(
   'all'
 );
 
-const filterArchived = handleActions(
+const archiveFilter = handleActions(
   {
-    [actions.changeArchivedFilter](state) {
+    [actions.changeArchiveFilter](state) {
       return !state;
     },
   },
@@ -82,13 +83,14 @@ const allIds = handleActions(
 const employees = combineReducers({ byId, allIds });
 
 const ui = combineReducers({
-  filterRole,
-  filterArchived,
+  roleFilter,
+  archiveFilter,
   sortByName,
   sortByBirthday,
 });
 
 const rootReducer = combineReducers({
+  form: formReducer,
   employees,
   ui,
 });

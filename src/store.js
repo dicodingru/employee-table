@@ -18,8 +18,8 @@ const normalizedEmployees = employees.reduce(
 const initialState = {
   employees: normalizedEmployees,
   ui: {
-    filterRole: 'all',
-    filterArchived: false,
+    roleFilter: 'all',
+    archiveFilter: false,
     sortByName: 'asc',
     sortByBirthday: '',
   },

@@ -3,7 +3,7 @@ import rootReducer from '../src/reducers';
 import {
   addEmployee,
   changeRoleFilter,
-  changeArchivedFilter,
+  changeArchiveFilter,
   switchSortingByName,
   switchSortingByBirthday,
 } from '../src/actions';
@@ -18,31 +18,28 @@ describe('Store', () => {
         allIds: [],
       },
       ui: {
-        filterRole: 'all',
-        filterArchived: false,
+        roleFilter: 'all',
+        archiveFilter: false,
         sortByName: 'asc',
         sortByBirthday: '',
       },
+      form: {},
     });
   });
 
   test('should add employee', () => {
     store.dispatch(
       addEmployee({
-        employee: {
-          id: 1,
-          name: 'Илья Емельянов',
-          isArchive: false,
-          role: 'driver',
-          phone: '+7 (883) 508-3269',
-          birthday: '12.02.1982',
-        },
+        name: 'Илья Емельянов',
+        role: 'driver',
+        phone: '+7 (883) 508-3269',
+        birthday: '1982-02-12',
       })
     );
     expect(store.getState().employees).toEqual({
       byId: {
-        1: {
-          id: 1,
+        21: {
+          id: 21,
           name: 'Илья Емельянов',
           isArchive: false,
           role: 'driver',
@@ -50,25 +47,25 @@ describe('Store', () => {
           birthday: '12.02.1982',
         },
       },
-      allIds: [1],
+      allIds: [21],
     });
   });
 
   test('should change role filter', () => {
     store.dispatch(changeRoleFilter({ role: 'waiter' }));
     expect(store.getState().ui).toEqual({
-      filterRole: 'waiter',
-      filterArchived: false,
+      roleFilter: 'waiter',
+      archiveFilter: false,
       sortByName: 'asc',
       sortByBirthday: '',
     });
   });
 
   test('should change archived filter', () => {
-    store.dispatch(changeArchivedFilter());
+    store.dispatch(changeArchiveFilter());
     expect(store.getState().ui).toEqual({
-      filterRole: 'waiter',
-      filterArchived: true,
+      roleFilter: 'waiter',
+      archiveFilter: true,
       sortByName: 'asc',
       sortByBirthday: '',
     });
@@ -77,8 +74,8 @@ describe('Store', () => {
   test('should change sorting by name order', () => {
     store.dispatch(switchSortingByName());
     expect(store.getState().ui).toEqual({
-      filterRole: 'waiter',
-      filterArchived: true,
+      roleFilter: 'waiter',
+      archiveFilter: true,
       sortByName: 'desc',
       sortByBirthday: '',
     });
@@ -88,8 +85,8 @@ describe('Store', () => {
     store.dispatch(switchSortingByBirthday());
     store.dispatch(switchSortingByBirthday());
     expect(store.getState().ui).toEqual({
-      filterRole: 'waiter',
-      filterArchived: true,
+      roleFilter: 'waiter',
+      archiveFilter: true,
       sortByName: '',
       sortByBirthday: 'desc',
     });

@@ -1,21 +1,21 @@
 import { createSelector } from 'reselect';
 
 const getEmployees = ({ employees }) => employees;
-const getFilterRole = ({ ui: { filterRole } }) => filterRole;
-const getFilterArchived = ({ ui: { filterArchived } }) => filterArchived;
+const getRoleFilter = ({ ui: { roleFilter } }) => roleFilter;
+const getArchiveFilter = ({ ui: { archiveFilter } }) => archiveFilter;
 
 const employeesSelector = createSelector(getEmployees, (employees) =>
   employees.allIds.map((id) => employees.byId[id])
 );
 
 export const filteredEmployeesSelector = createSelector(
-  getFilterRole,
-  getFilterArchived,
+  getRoleFilter,
+  getArchiveFilter,
   employeesSelector,
-  (filterRole, filterArchived, employees) =>
+  (roleFilter, archiveFilter, employees) =>
     employees.filter(
       ({ role, isArchive }) =>
-        isArchive === filterArchived && (filterRole === 'all' || role === filterRole)
+        isArchive === archiveFilter && (roleFilter === 'all' || role === roleFilter)
     )
 );
 

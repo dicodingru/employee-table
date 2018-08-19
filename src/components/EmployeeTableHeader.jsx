@@ -3,15 +3,10 @@ import cn from 'classnames';
 
 class EmployeeTableHeader extends Component {
   render() {
-    const {
-      sortByName,
-      sortByBirthday,
-      onSortByName,
-      onSortByBirthday,
-    } = this.props;
+    const { sortByName, sortByBirthday, onSortByName, onSortByBirthday } = this.props;
 
-    const nameThClass = cn({ 'table-active': sortByName !== '' });
-    const birthdayThClass = cn({ 'table-active': sortByBirthday !== '' });
+    const nameThClass = cn({ 'bg-dark text-light': sortByName !== '' });
+    const birthdayThClass = cn({ 'bg-dark text-light': sortByBirthday !== '' });
 
     const nameIconClass = cn({
       fa: true,
@@ -30,19 +25,16 @@ class EmployeeTableHeader extends Component {
     });
 
     return (
-      <thead>
+      <thead className="">
         <tr>
           <th scope="col" className={nameThClass} onClick={onSortByName}>
-            Name
+            ФИО
             <i className={nameIconClass} aria-hidden="true" />
           </th>
-          <th scope="col">Role</th>
-          <th scope="col">Phone</th>
-          <th
-            scope="col"
-            className={birthdayThClass}
-            onClick={onSortByBirthday}>
-            Birth date
+          <th scope="col">Должность</th>
+          <th scope="col">Телефон</th>
+          <th scope="col" className={birthdayThClass} onClick={onSortByBirthday}>
+            Дата рождения
             <i className={birthdayIconClass} aria-hidden="true" />
           </th>
         </tr>

@@ -4,8 +4,8 @@ import * as actionCreators from '../actions';
 
 const mapStateToProps = (state) => {
   const props = {
-    filterRole: state.ui.filterRole,
-    filterArchived: state.ui.filterArchived,
+    roleFilter: state.ui.roleFilter,
+    archiveFilter: state.ui.archiveFilter,
   };
   return props;
 };
@@ -19,37 +19,43 @@ class EmployeeFilterForm extends Component {
   };
 
   onChangeStatus = () => {
-    this.props.changeArchivedFilter();
+    this.props.changeArchiveFilter();
   };
 
   render() {
-    const { filterRole, filterArchived } = this.props;
+    const { roleFilter, archiveFilter } = this.props;
     return (
-      <div className="mb-3">
-        <form className="d-flex justify-content-between" action="">
-          <div>
+      <div className="col-12 col-sm-3 col-md-2 mb-3">
+        <form className="form-inline d-md-block form-row">
+          <div className="col-6 col-sm mb-sm-3 text-sm-right">
+            <label htmlFor="role" className="sr-only">
+              Фильтровать по должности:{' '}
+            </label>
             <select
-              className="custom-select"
-              value={filterRole}
+              id="role"
+              className="form-control mw-100"
+              value={roleFilter}
               onChange={this.onSelectRole}>
-              <option value="all">Выберите должность</option>
+              <option value="all">Должность</option>
               <option value="driver">Водитель</option>
               <option value="waiter">Официант</option>
               <option value="cook">Повар</option>
             </select>
           </div>
 
-          <div className="form-check form-check-inline">
-            <label className="form-check-label" htmlFor="status">
-              В архиве &nbsp;
-            </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={filterArchived}
-              id="status"
-              onChange={this.onChangeStatus}
-            />
+          <div className="col-6 col-sm">
+            <div className="form-check d-block text-right">
+              <label className="d-inline-block" htmlFor="status">
+                <input
+                  id="status"
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={archiveFilter}
+                  onChange={this.onChangeStatus}
+                />
+                &nbsp; В архиве
+              </label>
+            </div>
           </div>
         </form>
       </div>

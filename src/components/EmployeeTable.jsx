@@ -35,6 +35,7 @@ class EmployeeTable extends Component {
       (sortByName && sortBy(employees, 'name')) ||
       (sortByBirthday &&
         sortBy(employees, (o) => {
+          /** */ console.log(o.birthday);
           return Date.parse(
             o.birthday
               .split('.')
@@ -49,15 +50,17 @@ class EmployeeTable extends Component {
         : sortedEmployees;
 
     return (
-      <table className="table">
-        <EmployeeTableHeader
-          sortByName={sortByName}
-          sortByBirthday={sortByBirthday}
-          onSortByName={this.onSortByName}
-          onSortByBirthday={this.onSortByBirthday}
-        />
-        <EmployeeTableBody employees={reversedEmployees} />
-      </table>
+      <div className="col-12 col-sm-9 col-md-10">
+        <table className="table table-striped">
+          <EmployeeTableHeader
+            sortByName={sortByName}
+            sortByBirthday={sortByBirthday}
+            onSortByName={this.onSortByName}
+            onSortByBirthday={this.onSortByBirthday}
+          />
+          <EmployeeTableBody employees={reversedEmployees} />
+        </table>
+      </div>
     );
   }
 }
