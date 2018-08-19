@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
-class EmployeeFilterForm extends Component {
-  onSelectRole = (e) => {
-    this.props.onChangeRole(e.target.value);
+const mapStateToProps = (state) => {
+  const props = {
+    filterRole: state.ui.filterRole,
+    filterArchived: state.ui.filterArchived,
   };
+  return props;
+};
+@connect(
+  mapStateToProps,
+  actionCreators
+)
+class EmployeeFilterForm extends Component {
+  onSelectRole = ({ target: { value } }) => {
+    this.props.changeRoleFilter({ role: value });
+  };
+
+  onChangeStatus = () => {
+    this.props.changeArchivedFilter();
+  };
+
   render() {
-    const { filterRole, filterArchived, onChangeStatus } = this.props;
+    const { filterRole, filterArchived } = this.props;
     return (
       <div className="mb-3">
         <form className="d-flex justify-content-between" action="">
-          <div className="">
+          <div>
             <select
               className="custom-select"
               value={filterRole}
@@ -21,8 +39,6 @@ class EmployeeFilterForm extends Component {
             </select>
           </div>
 
-          <div />
-
           <div className="form-check form-check-inline">
             <label className="form-check-label" htmlFor="status">
               В архиве &nbsp;
@@ -32,7 +48,7 @@ class EmployeeFilterForm extends Component {
               type="checkbox"
               checked={filterArchived}
               id="status"
-              onChange={onChangeStatus}
+              onChange={this.onChangeStatus}
             />
           </div>
         </form>

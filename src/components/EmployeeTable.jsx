@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
 import { sortBy } from 'lodash';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 import EmployeeTableHeader from './EmployeeTableHeader';
 import EmployeeTableBody from './EmployeeTableBody';
+import { filteredEmployeesSelector } from '../selectors';
 
+const mapStateToProps = (state) => {
+  const props = {
+    employees: filteredEmployeesSelector(state),
+    sortByName: state.ui.sortByName,
+    sortByBirthday: state.ui.sortByBirthday,
+  };
+  return props;
+};
+
+@connect(
+  mapStateToProps,
+  actionCreators
+)
 class EmployeeTable extends Component {
-  render() {
-    const {
-      filterRole,
-      filterArchived,
-      sortByName,
-      sortByBirthday,
-      employees,
-      onSortByName,
-      onSortByBirthday,
-    } = this.props;
+  onSortByName = () => {
+    this.props.switchSortingByName();
+  };
 
-    const filteredEmployees =
-      filterRole === 'all'
-        ? employees.filter(({ isArchive }) => isArchive === filterArchived)
-        : employees.filter(
-            ({ role, isArchive }) =>
-              role === filterRole && isArchive === filterArchived
-          );
+  onSortByBirthday = () => {
+    this.props.switchSortingByBirthday();
+  };
+
+  render() {
+    const { sortByName, sortByBirthday, employees } = this.props;
 
     const sortedEmployees =
-      (sortByName && sortBy(filteredEmployees, 'name')) ||
+      (sortByName && sortBy(employees, 'name')) ||
       (sortByBirthday &&
-        sortBy(filteredEmployees, (o) => {
+        sortBy(employees, (o) => {
           return Date.parse(
             o.birthday
               .split('.')
@@ -45,8 +53,8 @@ class EmployeeTable extends Component {
         <EmployeeTableHeader
           sortByName={sortByName}
           sortByBirthday={sortByBirthday}
-          onSortByName={onSortByName}
-          onSortByBirthday={onSortByBirthday}
+          onSortByName={this.onSortByName}
+          onSortByBirthday={this.onSortByBirthday}
         />
         <EmployeeTableBody employees={reversedEmployees} />
       </table>
