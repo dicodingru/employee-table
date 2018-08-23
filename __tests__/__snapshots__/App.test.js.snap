@@ -99,162 +99,201 @@ exports[`App should match snapshot 1`] = `
         <div
           className="col-12 col-sm-9 col-md-10"
         >
-          <table
-            className="table table-striped"
+          <div
+            className="table-responsive"
           >
-            <thead
-              className=""
+            <table
+              className="table table-striped"
             >
-              <tr>
-                <th
-                  className="bg-dark text-light"
-                  onClick={[Function]}
-                  scope="col"
-                >
-                  ФИО
-                  <i
-                    aria-hidden="true"
-                    className="fa float-right fa-sort-asc"
-                  />
-                </th>
-                <th
-                  scope="col"
-                >
-                  Должность
-                </th>
-                <th
-                  scope="col"
-                >
-                  Телефон
-                </th>
-                <th
-                  className=""
-                  onClick={[Function]}
-                  scope="col"
-                >
-                  Дата рождения
-                  <i
-                    aria-hidden="true"
-                    className="fa float-right fa-sort"
-                  />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Александр Третьяков
-                </th>
-                <td>
-                  Водитель
-                </td>
-                <td>
-                  +7 (872) 568-2916
-                </td>
-                <td>
-                  31.05.1979
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Алла Котова
-                </th>
-                <td>
-                  Повар
-                </td>
-                <td>
-                  +7 (948) 523-2964
-                </td>
-                <td>
-                  26.01.1982
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Богдан Давыдов
-                </th>
-                <td>
-                  Водитель
-                </td>
-                <td>
-                  +7 (971) 575-2645
-                </td>
-                <td>
-                  29.11.1990
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Валерий Пестов
-                </th>
-                <td>
-                  Повар
-                </td>
-                <td>
-                  +7 (899) 403-2387
-                </td>
-                <td>
-                  20.01.1987
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Евдокия Филиппова
-                </th>
-                <td>
-                  Официант
-                </td>
-                <td>
-                  +7 (877) 450-3253
-                </td>
-                <td>
-                  03.12.1994
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Илья Емельянов
-                </th>
-                <td>
-                  Водитель
-                </td>
-                <td>
-                  +7 (883) 508-3269
-                </td>
-                <td>
-                  12.02.1982
-                </td>
-              </tr>
-              <tr>
-                <th
-                  scope="row"
-                >
-                  Пелагея Морозова
-                </th>
-                <td>
-                  Водитель
-                </td>
-                <td>
-                  +7 (977) 521-3479
-                </td>
-                <td>
-                  11.09.1981
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              <thead
+                className=""
+              >
+                <tr>
+                  <th
+                    className="bg-dark text-light"
+                    onClick={[Function]}
+                    scope="col"
+                  >
+                    ФИО
+                    <i
+                      aria-hidden="true"
+                      className="fa float-right fa-sort-asc"
+                    />
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Должность
+                  </th>
+                  <th
+                    scope="col"
+                  >
+                    Телефон
+                  </th>
+                  <th
+                    className=""
+                    onClick={[Function]}
+                    scope="col"
+                  >
+                    Дата рождения
+                    <i
+                      aria-hidden="true"
+                      className="fa float-right fa-sort"
+                    />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/7"
+                      onClick={[Function]}
+                    >
+                      Александр Третьяков
+                    </a>
+                  </th>
+                  <td>
+                    Водитель
+                  </td>
+                  <td>
+                    +7 (872) 568-2916
+                  </td>
+                  <td>
+                    31.05.1979
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/5"
+                      onClick={[Function]}
+                    >
+                      Алла Котова
+                    </a>
+                  </th>
+                  <td>
+                    Повар
+                  </td>
+                  <td>
+                    +7 (948) 523-2964
+                  </td>
+                  <td>
+                    26.01.1982
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/3"
+                      onClick={[Function]}
+                    >
+                      Богдан Давыдов
+                    </a>
+                  </th>
+                  <td>
+                    Водитель
+                  </td>
+                  <td>
+                    +7 (971) 575-2645
+                  </td>
+                  <td>
+                    29.11.1990
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/11"
+                      onClick={[Function]}
+                    >
+                      Валерий Пестов
+                    </a>
+                  </th>
+                  <td>
+                    Повар
+                  </td>
+                  <td>
+                    +7 (899) 403-2387
+                  </td>
+                  <td>
+                    20.01.1987
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/17"
+                      onClick={[Function]}
+                    >
+                      Евдокия Филиппова
+                    </a>
+                  </th>
+                  <td>
+                    Официант
+                  </td>
+                  <td>
+                    +7 (877) 450-3253
+                  </td>
+                  <td>
+                    03.12.1994
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/1"
+                      onClick={[Function]}
+                    >
+                      Илья Емельянов
+                    </a>
+                  </th>
+                  <td>
+                    Водитель
+                  </td>
+                  <td>
+                    +7 (883) 508-3269
+                  </td>
+                  <td>
+                    12.02.1982
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                  >
+                    <a
+                      href="/edit/8"
+                      onClick={[Function]}
+                    >
+                      Пелагея Морозова
+                    </a>
+                  </th>
+                  <td>
+                    Водитель
+                  </td>
+                  <td>
+                    +7 (977) 521-3479
+                  </td>
+                  <td>
+                    11.09.1981
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -338,7 +377,7 @@ exports[`App should match snapshot 1`] = `
                   <option
                     value=""
                   >
-                    Должность
+                    ---
                   </option>
                   <option
                     value="driver"

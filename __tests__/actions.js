@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 import rootReducer from '../src/reducers';
 import {
   addEmployee,
+  updateEmployee,
   changeRoleFilter,
   changeArchiveFilter,
   switchSortingByName,
@@ -45,6 +46,32 @@ describe('Store', () => {
           role: 'driver',
           phone: '+7 (883) 508-3269',
           birthday: '12.02.1982',
+        },
+      },
+      allIds: [21],
+    });
+  });
+
+  test('should update employee', () => {
+    store.dispatch(
+      updateEmployee({
+        id: 21,
+        name: 'Илья Баранов',
+        isArchive: true,
+        role: 'waiter',
+        phone: '+7 (883) 508-3270',
+        birthday: '12.02.1983',
+      })
+    );
+    expect(store.getState().employees).toEqual({
+      byId: {
+        21: {
+          id: 21,
+          name: 'Илья Баранов',
+          isArchive: true,
+          role: 'waiter',
+          phone: '+7 (883) 508-3270',
+          birthday: '12.02.1983',
         },
       },
       allIds: [21],

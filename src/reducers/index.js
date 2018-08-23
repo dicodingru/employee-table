@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import { reducer as formReducer } from 'redux-form';
+import _ from 'lodash';
 import * as actions from '../actions';
 
 const roleFilter = handleActions(
@@ -55,6 +56,14 @@ const sortByBirthday = handleActions(
 const byId = handleActions(
   {
     [actions.addEmployee](
+      state,
+      {
+        payload: { employee },
+      }
+    ) {
+      return { ...state, [employee.id]: employee };
+    },
+    [actions.updateEmployee](
       state,
       {
         payload: { employee },

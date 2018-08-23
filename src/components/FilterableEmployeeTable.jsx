@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import EmployeeFilterForm from './EmployeeFilterForm';
 import EmployeeTable from './EmployeeTable';
 import EmployeeAddButton from './EmployeeAddButton';

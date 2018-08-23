@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const roleDict = {
   cook: 'Повар',
@@ -9,7 +10,9 @@ const roleDict = {
 
 const EmployeeRow = ({ employee }) => (
   <tr>
-    <th scope="row">{employee.name}</th>
+    <th scope="row">
+      <Link to={`/edit/${employee.id}`}>{employee.name}</Link>
+    </th>
     <td>{roleDict[employee.role]}</td>
     <td>{employee.phone}</td>
     <td>{employee.birthday}</td>
