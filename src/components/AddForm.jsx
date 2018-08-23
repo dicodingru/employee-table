@@ -11,7 +11,7 @@ import * as actionCreators from '../actions';
 @reduxForm({
   form: 'addEmployee',
 })
-class EmployeeAddForm extends Component {
+class AddForm extends Component {
   static propTypes = {
     addEmployee: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
@@ -89,4 +89,4 @@ class EmployeeAddForm extends Component {
   }
 }
 
-export default EmployeeAddForm;
+export default AddForm;

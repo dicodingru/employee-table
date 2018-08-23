@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-const EmployeeTableHeader = ({
-  sortByName,
-  sortByBirthday,
-  onSortByName,
-  onSortByBirthday,
-}) => {
+const TableHeader = ({ sortByName, sortByBirthday, onSortByName, onSortByBirthday }) => {
   const nameThClass = cn({ 'bg-dark text-light': sortByName !== '' });
   const birthdayThClass = cn({ 'bg-dark text-light': sortByBirthday !== '' });
 
@@ -45,11 +40,11 @@ const EmployeeTableHeader = ({
   );
 };
 
-EmployeeTableHeader.propTypes = {
+TableHeader.propTypes = {
   sortByName: PropTypes.string.isRequired,
   sortByBirthday: PropTypes.string.isRequired,
   onSortByName: PropTypes.func.isRequired,
   onSortByBirthday: PropTypes.func.isRequired,
 };
 
-export default EmployeeTableHeader;
+export default TableHeader;

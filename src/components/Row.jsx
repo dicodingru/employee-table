@@ -8,7 +8,7 @@ const roleDict = {
   waiter: 'Официант',
 };
 
-const EmployeeRow = ({ employee }) => (
+const Row = ({ employee }) => (
   <tr>
     <th scope="row">
       <Link to={`/edit/${employee.id}`}>{employee.name}</Link>
@@ -19,7 +19,7 @@ const EmployeeRow = ({ employee }) => (
   </tr>
 );
 
-EmployeeRow.propTypes = {
+Row.propTypes = {
   employee: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -30,4 +30,4 @@ EmployeeRow.propTypes = {
   }).isRequired,
 };
 
-export default EmployeeRow;
+export default Row;

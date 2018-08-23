@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const EmployeeAddButton = () => (
+const AddButton = () => (
   <div className="col mb-3">
     <button
       className="btn btn-primary d-block mx-auto ml-sm-auto mr-sm-0"
@@ -12,4 +12,4 @@ const EmployeeAddButton = () => (
   </div>
 );
 
-export default EmployeeAddButton;
+export default AddButton;

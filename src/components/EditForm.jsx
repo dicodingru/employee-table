@@ -15,11 +15,15 @@ import * as actionCreators from '../actions';
   form: 'updateEmployee',
 })
 @withRouter
-class EmployeeEditForm extends Component {
+class EditForm extends Component {
   static propTypes = {
     updateEmployee: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    employeeId: PropTypes.number.isRequired,
+    employees: PropTypes.object.isRequired,
+    initialize: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
   componentWillMount = () => {
@@ -141,4 +145,4 @@ class EmployeeEditForm extends Component {
   }
 }
 
-export default EmployeeEditForm;
+export default EditForm;

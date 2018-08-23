@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
   mapStateToProps,
   actionCreators
 )
-class EmployeeFilterForm extends Component {
+class FilterForm extends Component {
   static propTypes = {
     roleFilter: PropTypes.string.isRequired,
     archiveFilter: PropTypes.bool.isRequired,
@@ -71,4 +71,4 @@ class EmployeeFilterForm extends Component {
   }
 }
 
-export default EmployeeFilterForm;
+export default FilterForm;
