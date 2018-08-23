@@ -4,10 +4,6 @@ import _ from 'lodash';
 export const addEmployee = createAction(
   'EMPLOYEE_ADD',
   ({ name, phone, role, birthday }) => {
-    const formattedBirthday = String(birthday)
-      .split('-')
-      .reverse()
-      .join('.');
     return {
       employee: {
         id: Number(_.uniqueId(2)),
@@ -15,24 +11,13 @@ export const addEmployee = createAction(
         isArchive: false,
         role,
         phone,
-        birthday: formattedBirthday,
+        birthday,
       },
     };
   }
 );
 
-export const updateEmployee = createAction('EMPLOYEE_UPDATE', (employee) => {
-  const formattedBirthday = String(employee.birthday)
-    .split('-')
-    .reverse()
-    .join('.');
-  return {
-    employee: {
-      ...employee,
-      birthday: formattedBirthday,
-    },
-  };
-});
+export const updateEmployee = createAction('EMPLOYEE_UPDATE');
 
 export const changeRoleFilter = createAction('ROLE_FILTER_CHANGE');
 export const changeArchiveFilter = createAction('ARCHIVED_FILTER_CHANGE');

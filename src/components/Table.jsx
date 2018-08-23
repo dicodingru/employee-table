@@ -44,12 +44,7 @@ class Table extends Component {
       (sortByName && sortBy(employees, 'name')) ||
       (sortByBirthday &&
         sortBy(employees, (o) => {
-          return Date.parse(
-            o.birthday
-              .split('.')
-              .reverse()
-              .join('/')
-          );
+          return Date.parse(o.birthday.split('.').reverse());
         }));
 
     const reversedEmployees =

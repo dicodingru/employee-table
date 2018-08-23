@@ -100,11 +100,7 @@ class EditForm extends Component {
     if (action === 'add') return;
 
     const employee = employees[employeeId];
-    const birthday = employee.birthday
-      .split('.')
-      .reverse()
-      .join('-');
-    initialize({ ...employee, birthday });
+    initialize(employee);
   };
 
   add = (employee) => {
@@ -115,7 +111,7 @@ class EditForm extends Component {
 
   update = (employee) => {
     const { employeeId, updateEmployee, history } = this.props;
-    updateEmployee({ ...employee, id: Number(employeeId) });
+    updateEmployee({ employee: { ...employee, id: Number(employeeId) } });
     history.push('/');
   };
 
