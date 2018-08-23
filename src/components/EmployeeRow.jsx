@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const roleDict = {
   cook: 'Повар',
   driver: 'Водитель',
   waiter: 'Официант',
 };
-class EmployeeRow extends Component {
-  state = {};
-  render() {
-    const { employee } = this.props;
-    return (
-      <tr>
-        <th scope="row">{employee.name}</th>
-        <td>{roleDict[employee.role]}</td>
-        <td>{employee.phone}</td>
-        <td>{employee.birthday}</td>
-      </tr>
-    );
-  }
-}
+
+const EmployeeRow = ({ employee }) => (
+  <tr>
+    <th scope="row">{employee.name}</th>
+    <td>{roleDict[employee.role]}</td>
+    <td>{employee.phone}</td>
+    <td>{employee.birthday}</td>
+  </tr>
+);
+
+EmployeeRow.propTypes = {
+  employee: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    isArchive: PropTypes.bool,
+    role: PropTypes.string,
+    phone: PropTypes.string,
+    birthday: PropTypes.string,
+  }).isRequired,
+};
 
 export default EmployeeRow;

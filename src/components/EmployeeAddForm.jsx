@@ -4,13 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
-const mapStateToProps = (state) => {
-  const props = {};
-  return props;
-};
-
 @connect(
-  mapStateToProps,
+  () => ({}),
   actionCreators
 )
 @reduxForm({
@@ -64,7 +59,7 @@ class EmployeeAddForm extends Component {
                     className="form-control"
                     name="role"
                     component="select">
-                    <option value="">Должность</option>
+                    <option value="">---</option>
                     <option value="driver">Водитель</option>
                     <option value="waiter">Официант</option>
                     <option value="cook">Повар</option>

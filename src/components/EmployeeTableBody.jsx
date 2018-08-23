@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import EmployeeRow from './EmployeeRow';
 
-class EmployeeTableBody extends Component {
-  render() {
-    return (
-      <tbody>
-        {this.props.employees.map((e) => (
-          <EmployeeRow key={e.id} employee={e} />
-        ))}
-      </tbody>
-    );
-  }
-}
+const EmployeeTableBody = ({ employees }) => (
+  <tbody>
+    {employees.map((e) => (
+      <EmployeeRow key={e.id} employee={e} />
+    ))}
+  </tbody>
+);
+
+EmployeeTableBody.propTypes = {
+  employees: PropTypes.array.isRequired,
+};
 
 export default EmployeeTableBody;

@@ -59,15 +59,17 @@ class EmployeeTable extends Component {
 
     return (
       <div className="col-12 col-sm-9 col-md-10">
-        <table className="table table-striped">
-          <EmployeeTableHeader
-            sortByName={sortByName}
-            sortByBirthday={sortByBirthday}
-            onSortByName={this.onSortByName}
-            onSortByBirthday={this.onSortByBirthday}
-          />
-          <EmployeeTableBody employees={reversedEmployees} />
-        </table>
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <EmployeeTableHeader
+              sortByName={sortByName}
+              sortByBirthday={sortByBirthday}
+              onSortByName={this.onSortByName}
+              onSortByBirthday={this.onSortByBirthday}
+            />
+            <EmployeeTableBody employees={reversedEmployees} />
+          </table>
+        </div>
       </div>
     );
   }
