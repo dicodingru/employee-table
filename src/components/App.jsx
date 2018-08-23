@@ -11,10 +11,17 @@ const App = () => (
         <Route exact path="/" component={FilterableTable} />
         <Route
           exact
+          path="/add"
+          render={() => {
+            return <EditForm action={'add'} />;
+          }}
+        />
+        <Route
+          exact
           path="/edit/:id"
           render={({ location }) => {
             const employeeId = location.pathname.replace('/edit/', '');
-            return <EditForm employeeId={employeeId} />;
+            return <EditForm action={'edit'} employeeId={Number(employeeId)} />;
           }}
         />
         <Route component={NotFound} />

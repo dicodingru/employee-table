@@ -17,17 +17,21 @@ import * as actionCreators from '../actions';
 @withRouter
 class EditForm extends Component {
   static propTypes = {
+    addEmployee: PropTypes.func.isRequired,
     updateEmployee: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    employeeId: PropTypes.number.isRequired,
+    employeeId: PropTypes.number,
     employees: PropTypes.object.isRequired,
     initialize: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    action: PropTypes.string.isRequired,
   };
 
   componentWillMount = () => {
-    const { employeeId, employees, initialize } = this.props;
+    const { action, employeeId, employees, initialize } = this.props;
+    if (action === 'add') return;
+
     const employee = employees[employeeId];
     const birthday = employee.birthday
       .split('.')
@@ -36,34 +40,28 @@ class EditForm extends Component {
     initialize({ ...employee, birthday });
   };
 
-  update = (employee) => {
-    const { updateEmployee, history } = this.props;
-    updateEmployee(employee);
+  add = (employee) => {
+    const { addEmployee, history } = this.props;
+    addEmployee(employee);
     history.push('/');
   };
 
-  cancel = (employee) => {
+  update = (employee) => {
+    const { employeeId, updateEmployee, history } = this.props;
+    updateEmployee({ ...employee, id: Number(employeeId) });
+    history.push('/');
+  };
+
+  cancel = () => {
     const { history } = this.props;
     history.push('/');
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, action } = this.props;
+    const handler = action === 'add' ? this.add : this.update;
     return (
-      <form className="p-3" onSubmit={handleSubmit(this.update)}>
-        <div className="form-group row">
-          <label className="col-sm-2 col-from-label" htmlFor="id">
-            ID
-          </label>
-          <Field
-            id="id"
-            className="form-control col-sm-10"
-            name="id"
-            component="input"
-            type="text"
-            disabled={true}
-          />
-        </div>
+      <form className="p-3" onSubmit={handleSubmit(handler)}>
         <div className="form-group row">
           <label className="col-sm-2 col-from-label" htmlFor="name">
             ФИО
