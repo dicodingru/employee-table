@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { sortBy } from 'lodash';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
@@ -20,6 +21,14 @@ const mapStateToProps = (state) => {
   actionCreators
 )
 class EmployeeTable extends Component {
+  static propTypes = {
+    switchSortingByName: PropTypes.func.isRequired,
+    switchSortingByBirthday: PropTypes.func.isRequired,
+    sortByName: PropTypes.string.isRequired,
+    sortByBirthday: PropTypes.string.isRequired,
+    employees: PropTypes.array.isRequired,
+  };
+
   onSortByName = () => {
     this.props.switchSortingByName();
   };
@@ -35,7 +44,6 @@ class EmployeeTable extends Component {
       (sortByName && sortBy(employees, 'name')) ||
       (sortByBirthday &&
         sortBy(employees, (o) => {
-          /** */ console.log(o.birthday);
           return Date.parse(
             o.birthday
               .split('.')

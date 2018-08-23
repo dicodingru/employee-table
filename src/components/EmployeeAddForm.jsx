@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
@@ -16,6 +17,12 @@ const mapStateToProps = (state) => {
   form: 'addEmployee',
 })
 class EmployeeAddForm extends Component {
+  static propTypes = {
+    addEmployee: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+  };
+
   add = (employee) => {
     const { addEmployee, reset } = this.props;
     addEmployee(employee);

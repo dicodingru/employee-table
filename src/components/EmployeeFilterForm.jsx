@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
@@ -14,6 +15,13 @@ const mapStateToProps = (state) => {
   actionCreators
 )
 class EmployeeFilterForm extends Component {
+  static propTypes = {
+    roleFilter: PropTypes.string.isRequired,
+    archiveFilter: PropTypes.bool.isRequired,
+    changeRoleFilter: PropTypes.func.isRequired,
+    changeArchiveFilter: PropTypes.func.isRequired,
+  };
+
   onSelectRole = ({ target: { value } }) => {
     this.props.changeRoleFilter({ role: value });
   };
