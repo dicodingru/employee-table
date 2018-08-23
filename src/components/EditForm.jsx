@@ -5,6 +5,72 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actionCreators from '../actions';
 
+const validate = (values) => {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Нужно заполнить';
+  } else if (values.name.length < 4) {
+    errors.name = 'Минимум 4 символа';
+  } else if (!/\D+/i.test(values.name)) {
+    errors.name = 'Только буквы';
+  }
+  if (!values.phone) {
+    errors.phone = 'Нужно заполнить';
+  } else if (!/(^$)|(^\+?(\s|\d|\(|\)|-)+$)/i.test(values.phone)) {
+    errors.phone = 'Номер заполнен некорректно';
+  }
+  if (!values.birthday) {
+    errors.birthday = 'Нужно заполнить';
+  } else if (
+    !/^(?:(?:31(\.|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\.|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\.|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\.|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/i.test(
+      values.birthday
+    )
+  ) {
+    errors.birthday = 'Дата заполнена некорректно';
+  }
+  return errors;
+};
+
+const warn = (values) => {
+  const warnings = {};
+  if (values.age < 19) {
+    warnings.age = 'Hmm, you seem a bit young...';
+  }
+  return warnings;
+};
+
+const renderField = ({
+  id,
+  className,
+  input,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div
+    className="form-group form-row align-items-center mb-4"
+    style={{ position: 'relative' }}>
+    <label className="col col-sm-3 col-from-label text-right pr-2" htmlFor={id}>
+      {label}
+    </label>
+    <input className={className} {...input} placeholder={placeholder} type={type} />
+    <div style={{ position: 'absolute', bottom: '-1.6em', right: '0' }}>
+      {touched &&
+        ((error && <span className="text-danger">{error}</span>) ||
+          (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+);
+
+const renderLabel = (id, title) => {
+  return (
+    <label className="col col-sm-3 col-from-label text-right pr-2" htmlFor={id}>
+      {title}
+    </label>
+  );
+};
+
 @connect(
   (state) => ({
     employees: state.employees.byId,
@@ -12,7 +78,8 @@ import * as actionCreators from '../actions';
   actionCreators
 )
 @reduxForm({
-  form: 'updateEmployee',
+  form: 'editEmployee',
+  validate,
 })
 @withRouter
 class EditForm extends Component {
@@ -57,88 +124,74 @@ class EditForm extends Component {
     history.push('/');
   };
 
+  renderTextInput = (name, label, placeholder) => (
+    <Field
+      id={name}
+      className="form-control col-sm-9"
+      name={name}
+      component={renderField}
+      type="text"
+      label={label}
+      placeholder={placeholder}
+    />
+  );
+
+  renderButtons = () => (
+    <div>
+      <button className="btn btn-outline-success btn-block" type="submit">
+        Сохранить
+      </button>
+      <button
+        className="btn btn-outline-danger btn-block"
+        type="button"
+        onClick={this.cancel}>
+        Отмена
+      </button>
+    </div>
+  );
+
   render() {
     const { handleSubmit, action } = this.props;
     const handler = action === 'add' ? this.add : this.update;
     return (
-      <form className="p-3" onSubmit={handleSubmit(handler)}>
-        <div className="form-group row">
-          <label className="col-sm-2 col-from-label" htmlFor="name">
-            ФИО
-          </label>
-          <Field
-            id="name"
-            className="form-control col-sm-10"
-            name="name"
-            component="input"
-            type="text"
-          />
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-from-label" htmlFor="phone">
-            Телефон
-          </label>
-          <Field
-            id="phone"
-            className="form-control col-sm-10"
-            name="phone"
-            component="input"
-            type="text"
-          />
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-from-label" htmlFor="role">
-            Должность
-          </label>
-          <Field
-            id="role"
-            className="form-control col-sm-10"
-            name="role"
-            component="select">
-            <option value="">---</option>
-            <option value="driver">Водитель</option>
-            <option value="waiter">Официант</option>
-            <option value="cook">Повар</option>
-          </Field>
-        </div>
-        <div className="form-group row">
-          <label className="col-sm-2 col-from-label" htmlFor="birthday">
-            Дата рождения
-          </label>
-          <Field
-            id="birthday"
-            className="form-control col-sm-10"
-            name="birthday"
-            component="input"
-            type="date"
-          />
-        </div>
-        <div className="form-group row">
-          <div className="mx-auto form-check">
+      <div className="row">
+        <form
+          className="p-3 col mx-auto"
+          onSubmit={handleSubmit(handler)}
+          style={{ maxWidth: '500px' }}>
+          {this.renderTextInput('name', 'ФИО:', 'Фамилия Имя (Отчество)')}
+          {this.renderTextInput('phone', 'Телефон:', '+7 (981) 981-8181')}
+          <div className="form-group form-row align-items-center">
+            {renderLabel('role', 'Должность:')}
             <Field
-              id="isArchive"
-              className="form-check-input"
-              name="isArchive"
-              component="input"
-              type="checkbox"
-            />
-            <label className="form-check-label" htmlFor="isArchive">
-              В архиве
-            </label>
+              id="role"
+              className="form-control col-sm-9"
+              name="role"
+              component="select">
+              <option value="">---</option>
+              <option value="driver">Водитель</option>
+              <option value="waiter">Официант</option>
+              <option value="cook">Повар</option>
+            </Field>
           </div>
-        </div>
-        <div>
-          <button className="btn btn-outline-success btn-block" type="submit">
-            Сохранить
-          </button>
-          <button
-            className="btn btn-outline-danger btn-block"
-            type="button"
-            onClick={this.cancel}>
-            Отмена
-          </button>
-        </div>
-      </form>
+          {this.renderTextInput('birthday', 'Дата рождения:', '31.12.1999')}
+          <div className="form-group form-row align-items-center">
+            <div className="mx-auto form-check form-check-inline">
+              <Field
+                id="isArchive"
+                className="form-check-input"
+                name="isArchive"
+                component="input"
+                type="checkbox"
+              />
+              <label className="form-check-label" htmlFor="isArchive">
+                В архиве
+              </label>
+            </div>
+          </div>
+          {this.renderButtons()}
+        </form>
+      </div>
     );
   }
 }

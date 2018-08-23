@@ -37,7 +37,7 @@ class Table extends Component {
     this.props.switchSortingByBirthday();
   };
 
-  render() {
+  getSortedEmployees = () => {
     const { sortByName, sortByBirthday, employees } = this.props;
 
     const sortedEmployees =
@@ -57,8 +57,14 @@ class Table extends Component {
         ? sortedEmployees.reverse()
         : sortedEmployees;
 
+    return reversedEmployees;
+  };
+
+  render() {
+    const { sortByName, sortByBirthday } = this.props;
+
     return (
-      <div className="col-12 col-sm-9 col-md-10">
+      <div className="col-12 col-sm-9">
         <div className="table-responsive">
           <table className="table table-striped">
             <TableHeader
@@ -67,7 +73,7 @@ class Table extends Component {
               onSortByName={this.onSortByName}
               onSortByBirthday={this.onSortByBirthday}
             />
-            <TableBody employees={reversedEmployees} />
+            <TableBody employees={this.getSortedEmployees()} />
           </table>
         </div>
       </div>
