@@ -14,10 +14,10 @@ exports[`App should match snapshot 1`] = `
         className="row"
       >
         <div
-          className="col mb-3"
+          className="col-4 col-sm-3 col-md-2 offset-4 offset-sm-9 mb-3"
         >
           <a
-            className="btn btn-primary d-block mx-auto ml-sm-auto mr-sm-0"
+            className="btn btn-primary btn-block "
             href="/add"
             onClick={[Function]}
           >

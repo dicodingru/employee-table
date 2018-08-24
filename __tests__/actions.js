@@ -34,7 +34,7 @@ describe('Store', () => {
         name: 'Илья Емельянов',
         role: 'driver',
         phone: '+7 (883) 508-3269',
-        birthday: '1982-02-12',
+        birthday: '12.02.1982',
       })
     );
     expect(store.getState().employees).toEqual({
@@ -55,12 +55,14 @@ describe('Store', () => {
   test('should update employee', () => {
     store.dispatch(
       updateEmployee({
-        id: 21,
-        name: 'Илья Баранов',
-        isArchive: true,
-        role: 'waiter',
-        phone: '+7 (883) 508-3270',
-        birthday: '12.02.1983',
+        employee: {
+          id: 21,
+          name: 'Илья Баранов',
+          isArchive: true,
+          role: 'waiter',
+          phone: '+7 (883) 508-3270',
+          birthday: '12.02.1983',
+        },
       })
     );
     expect(store.getState().employees).toEqual({
