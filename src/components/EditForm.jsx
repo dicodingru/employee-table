@@ -5,29 +5,49 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actionCreators from '../actions';
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.name) {
-    errors.name = 'Нужно заполнить';
-  } else if (values.name.length < 4) {
-    errors.name = 'Минимум 4 символа';
-  } else if (!/\D+/i.test(values.name)) {
-    errors.name = 'Только буквы';
+const validateName = (value) => {
+  let result;
+  if (!value) {
+    result = 'Нужно заполнить';
+  } else if (value.length < 4) {
+    result = 'Минимум 4 символа';
+  } else if (!/^[а-яА-Я\s]*$/i.test(value)) {
+    result = 'Только буквы';
   }
-  if (!values.phone) {
-    errors.phone = 'Нужно заполнить';
-  } else if (!/(^$)|(^\+?(\s|\d|\(|\)|-)+$)/i.test(values.phone)) {
-    errors.phone = 'Номер заполнен некорректно';
+  return result;
+};
+
+const validatePhone = (value) => {
+  let result;
+  if (!value) {
+    result = 'Нужно заполнить';
+  } else if (!/(^$)|(^\+?(\s|\d|\(|\)|-)+$)/i.test(value)) {
+    result = 'Номер заполнен некорректно';
   }
-  if (!values.birthday) {
-    errors.birthday = 'Нужно заполнить';
+  return result;
+};
+
+const validateBirthday = (value) => {
+  let result;
+  if (!value) {
+    result = 'Нужно заполнить';
   } else if (
     !/^(?:(?:31(\.|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\.|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\.|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\.|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/i.test(
-      values.birthday
+      value
     )
   ) {
-    errors.birthday = 'Дата заполнена некорректно';
+    result = 'Дата заполнена некорректно';
   }
+  return result;
+};
+
+const validate = ({ name, phone, birthday }) => {
+  const errors = {};
+
+  errors.name = validateName(name);
+  errors.phone = validatePhone(phone);
+  errors.birthday = validateBirthday(birthday);
+
   return errors;
 };
 
@@ -162,7 +182,7 @@ class EditForm extends Component {
               <option value="cook">Повар</option>
             </Field>
           </div>
-          {this.renderTextInput('birthday', 'Дата рождения:', '31.12.1999')}
+          {this.renderTextInput('birthday', 'Дата рождения:', 'ДД.ММ.ГГГГ')}
           <div className="form-group form-row align-items-center">
             <div className="mx-auto form-check form-check-inline">
               <Field
