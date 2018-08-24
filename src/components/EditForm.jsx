@@ -12,7 +12,7 @@ const validateName = (value) => {
   } else if (value.length < 4) {
     result = 'Минимум 4 символа';
   } else if (!/^[а-яА-Я\s]*$/i.test(value)) {
-    result = 'Только буквы';
+    result = 'Только русские буквы и пробел';
   }
   return result;
 };
@@ -144,6 +144,35 @@ class EditForm extends Component {
     />
   );
 
+  renderRoleSelect = () => (
+    <div className="form-group form-row align-items-center">
+      {renderLabel('role', 'Должность:')}
+      <Field id="role" className="form-control col-sm-9" name="role" component="select">
+        <option value="">---</option>
+        <option value="driver">Водитель</option>
+        <option value="waiter">Официант</option>
+        <option value="cook">Повар</option>
+      </Field>
+    </div>
+  );
+
+  renderArchiveCheckbox = () => (
+    <div className="form-group form-row align-items-center">
+      <div className="mx-auto form-check form-check-inline">
+        <Field
+          id="isArchive"
+          className="form-check-input"
+          name="isArchive"
+          component="input"
+          type="checkbox"
+        />
+        <label className="form-check-label" htmlFor="isArchive">
+          В архиве
+        </label>
+      </div>
+    </div>
+  );
+
   renderButtons = () => (
     <div>
       <button className="btn btn-outline-success btn-block" type="submit">
@@ -169,34 +198,9 @@ class EditForm extends Component {
           style={{ maxWidth: '500px' }}>
           {this.renderTextInput('name', 'ФИО:', 'Фамилия Имя (Отчество)')}
           {this.renderTextInput('phone', 'Телефон:', '+7 (981) 981-8181')}
-          <div className="form-group form-row align-items-center">
-            {renderLabel('role', 'Должность:')}
-            <Field
-              id="role"
-              className="form-control col-sm-9"
-              name="role"
-              component="select">
-              <option value="">---</option>
-              <option value="driver">Водитель</option>
-              <option value="waiter">Официант</option>
-              <option value="cook">Повар</option>
-            </Field>
-          </div>
+          {this.renderRoleSelect()}
           {this.renderTextInput('birthday', 'Дата рождения:', 'ДД.ММ.ГГГГ')}
-          <div className="form-group form-row align-items-center">
-            <div className="mx-auto form-check form-check-inline">
-              <Field
-                id="isArchive"
-                className="form-check-input"
-                name="isArchive"
-                component="input"
-                type="checkbox"
-              />
-              <label className="form-check-label" htmlFor="isArchive">
-                В архиве
-              </label>
-            </div>
-          </div>
+          {this.renderArchiveCheckbox()}
           {this.renderButtons()}
         </form>
       </div>
